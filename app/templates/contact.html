@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact Form</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/contact.css') }}">
+</head>
+<body>
+
+    <h1>Contact Form</h1>
+    <p>Fill in this form to contact the site owners.</p>
+
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        {{ form.csrf_token }}
+
+        <!-- Name -->
+        <div class="form-group">
+            <label>
+                Name <span class="required">(Required)</span>
+            </label>
+            <div class="help-text">Please enter your full name</div>
+            {{ form.name }}
+            {% for error in form.name.errors %}
+                <div class="error">{{ error }}</div>
+            {% endfor %}
+        </div>
+
+        <!-- Email -->
+        <div class="form-group">
+            <label>
+                E-mail <span class="required">(Required)</span>
+            </label>
+            <div class="help-text">Please enter your e-mail address</div>
+            {{ form.email }}
+            {% for error in form.email.errors %}
+                <div class="error">{{ error }}</div>
+            {% endfor %}
+        </div>
+
+        <!-- Subject -->
+        <div class="form-group">
+            <label>
+                Subject <span class="required">(Required)</span>
+            </label>
+            <div class="help-text">Please enter the subject for your message.</div>
+            {{ form.subject }}
+            {% for error in form.subject.errors %}
+                <div class="error">{{ error }}</div>
+            {% endfor %}
+        </div>
+
+        <!-- Message -->
+        <div class="form-group">
+            <label>
+                Message <span class="required">(Required)</span>
+            </label>
+            <div class="help-text">Please enter the message you would like to send.</div>
+            {{ form.message }}
+            {% for error in form.message.errors %}
+                <div class="error">{{ error }}</div>
+            {% endfor %}
+        </div>
+
+        <button type="submit">Send Message</button>
+    </form>
+
+</body>
+</html>
